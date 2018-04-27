@@ -9,5 +9,5 @@ Installation
 ------------
 Automatically install it without cloning this repository.
 
-     wget --no-check-certificate -O - https://raw.github.com/Elsvent/Shell-Config/master/install.sh | sh
+     wget --no-check-certificate -O - https://raw.github.com/Elsvent/Shell-Config/company/install.sh | sh
 
