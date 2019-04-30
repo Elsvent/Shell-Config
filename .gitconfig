@@ -1,0 +1,10 @@
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	d = difftool
+[user]
+	name = Hong Yi-Tse
+	email = yitse.hong@soocii.me
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false

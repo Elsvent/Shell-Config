@@ -1,58 +1,101 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+#
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="rkj-repos"
+# Path to your oh-my-zsh installation.
+export TERM="xterm-256color"
+export ZSH=$HOME/.oh-my-zsh
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE="nerdfont-complete"
+POWERLINE_HIDE_HOST_NAME="true"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir dir_writable newline vcs virtualenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time status battery)
+# Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Comment this out to disable bi-weekly auto-update checks
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
-# Uncomment to change how often before auto-updates occur? (in days)
+# Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
-# Uncomment following line if you want to disable colors in ls
+# Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
-# Uncomment following line if you want to disable autosetting terminal title.
+# Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
+# Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
 
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git mercurial)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git autojump)
 
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH="/usr/local/bin:$PATH:/opt/local/bin"
-alias tmux='tmux -2'
-alias gorb='ssh root@rb'
-alias gohp='ssh root@hp1'
-alias goelsbsd='ssh root@elsbsd9'
-alias goscsitest='ssh root@scsitest'
-alias gopicoral='ssh picoral@picoral.dyns.cx'
-#alias winvpn='ssh -L 5600:192.168.1.40:3389 picoral@picoral.dyns.cx'
-alias gonemo='ssh elsvent@173.245.93.156 -p 31415'
-alias winvpn='ssh -L 5600:10.47.1.63:3389 elsvent@173.245.93.156 -p 31415'
-export BAT_CHARGE='/Users/elsvent/.myconfig/zsh/battery.py'
+fpath=(/usr/local/share/zsh-completions $fpath)
+export GOPATH=$HOME/gopath
+export PATH=$PATH:$GOPATH
+alias vg='vagrant'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/yitse/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yitse/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/yitse/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/yitse/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+alias token='kubectl config view | grep -A10 "name: $(kubectl config current-context)"| awk '"'"'$1=="access-token:"{print $2}'"'"
